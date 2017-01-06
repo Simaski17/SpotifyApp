@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/accesorios"
+    tools:context="com.rinno.simaski.spotifyapp.MainActivity">
+
+
+    <Button
+        android:text="Play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="180dp"
+        android:id="@+id/btnPlay" />
+
+    <Button
+        android:text="Reanudar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:layout_alignTop="@+id/btnNext"
+        android:layout_toEndOf="@+id/btnPrevious"
+        android:visibility="gone"
+        android:id="@+id/btnResume" />
+
+    <Button
+        android:text="Siguiente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnNext"
+        android:layout_alignBaseline="@+id/btnPrevious"
+        android:layout_alignBottom="@+id/btnPrevious"
+        android:layout_toEndOf="@+id/btnPlay" />
+
+    <Button
+        android:text="Anterior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnPrevious"
+        android:layout_alignTop="@+id/btnPlay"
+        android:layout_toStartOf="@+id/btnPlay"
+        android:layout_marginTop="40dp" />
+
+    <Button
+        android:text="Pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:id="@+id/btnPause"
+        android:layout_alignTop="@+id/btnNext"
+        android:layout_toEndOf="@+id/btnPrevious" />
+
+    <TextView
+        android:text="Aqui lo que escuchas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:id="@+id/tvMetadata"
+        android:layout_above="@+id/btnPlay"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="140dp"
+        android:id="@+id/ivAlbumCover"
+        android:layout_alignStart="@+id/tvMetadata"
+        android:layout_above="@+id/tvMetadata"
+        android:layout_alignEnd="@+id/tvMetadata" />
+
+    <SeekBar
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnPause"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/seekBar" />
+
+
+</RelativeLayout>
