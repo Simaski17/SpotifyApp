@@ -87,31 +87,30 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
 
     public class BackgroundAsyncTask extends         AsyncTask<Void, Integer, Void> {
 
-        int myProgress;
+        int myProgress = 0;
 
         @Override
         protected void onPostExecute(Void result) {
             // TODO Auto-generated method stub
-            seekBar.setMax(tiempo);
         }
 
         @Override
         protected void onPreExecute() {
             // TODO Auto-generated method stub
-            myProgress = 0;
+            seekBar.setProgress(tiempo/1000);
         }
 
         @Override
         protected Void doInBackground(Void... params) {
             // TODO Auto-generated method stub
-
-            Log.e("TIME", "ASYNCTASK!" +mCurrentPlaybackState.positionMs);
-            /*while(myProgress<tiempo){
-                myProgress++;
+            Log.e("TAG", "ASYNCTASK!" +tiempo);
+            while(myProgress<tiempo){
                 publishProgress(myProgress);
-                Log.e("TIEMPO","VALOR: "+myProgress);*/
-                //SystemClock.sleep(tiempo/1000);
-            //}
+                Log.e("TIEMPO","VALOR: "+myProgress);
+                SystemClock.sleep(tiempo/1000);
+                myProgress++;
+            }
+
             return null;
         }
 
@@ -130,7 +129,8 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        seekBar.setProgress(0);
+        //seekBar.setProgress(0);
+        //seekBar.setMax(1000);
         registrarEventosBluetooth();
         bAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!bAdapter.isEnabled()) {

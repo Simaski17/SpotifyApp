@@ -75,10 +75,11 @@
     <SeekBar
         android:layout_width="500dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:id="@+id/seekBar"
+        android:max="1000"
         android:layout_below="@+id/btnPause"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:id="@+id/seekBar" />
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
