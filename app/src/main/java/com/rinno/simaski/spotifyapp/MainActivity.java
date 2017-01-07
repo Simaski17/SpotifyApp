@@ -85,44 +85,6 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
         }
     };
 
-    public class BackgroundAsyncTask extends         AsyncTask<Void, Integer, Void> {
-
-        int myProgress = 0;
-
-        @Override
-        protected void onPostExecute(Void result) {
-            // TODO Auto-generated method stub
-        }
-
-        @Override
-        protected void onPreExecute() {
-            // TODO Auto-generated method stub
-            seekBar.setProgress(tiempo/1000);
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            // TODO Auto-generated method stub
-            Log.e("TAG", "ASYNCTASK!" +tiempo);
-            while(myProgress<tiempo){
-                publishProgress(myProgress);
-                Log.e("TIEMPO","VALOR: "+myProgress);
-                SystemClock.sleep(tiempo/1000);
-                myProgress++;
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            // TODO Auto-generated method stub
-            seekBar.setProgress(values[0]);
-        }
-
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -233,7 +195,7 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
         }
 
         tiempo = (int) mMetadata.currentTrack.durationMs;
-        new BackgroundAsyncTask().execute();
+
         tvMetadata.setText(mMetadata.currentTrack.name + " - " + mMetadata.currentTrack.artistName);
 
         Glide.with(getApplicationContext()).load(mMetadata.currentTrack.albumCoverWebUrl)
