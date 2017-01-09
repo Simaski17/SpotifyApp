@@ -9,77 +9,71 @@
     tools:context="com.rinno.simaski.spotifyapp.MainActivity">
 
 
-    <Button
-        android:text="Play"
+    <TextView
+        android:text="Aqui lo que escuchas"
+        android:textSize="22sp"
+        android:textColor="#ffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="180dp"
-        android:id="@+id/btnPlay" />
-
-    <Button
-        android:text="Reanudar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
-        android:layout_alignTop="@+id/btnNext"
-        android:layout_toEndOf="@+id/btnPrevious"
-        android:visibility="gone"
-        android:id="@+id/btnResume" />
-
-    <Button
-        android:text="Siguiente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnNext"
-        android:layout_alignBaseline="@+id/btnPrevious"
-        android:layout_alignBottom="@+id/btnPrevious"
-        android:layout_toEndOf="@+id/btnPlay" />
-
-    <Button
-        android:text="Anterior"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnPrevious"
-        android:layout_alignTop="@+id/btnPlay"
-        android:layout_toStartOf="@+id/btnPlay"
-        android:layout_marginTop="40dp" />
-
-    <Button
-        android:text="Pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
-        android:id="@+id/btnPause"
-        android:layout_alignTop="@+id/btnNext"
-        android:layout_toEndOf="@+id/btnPrevious" />
-
-    <TextView
-        android:text="Aqui lo que escuchas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:id="@+id/tvMetadata"
-        android:layout_above="@+id/btnPlay"
+        android:layout_marginLeft="350dp"
+        android:layout_marginBottom="375dp"
+        android:id="@+id/tvEscuchas"
         android:layout_centerHorizontal="true" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="140dp"
+        android:layout_width="230dp"
+        android:layout_height="180dp"
         android:id="@+id/ivAlbumCover"
-        android:layout_alignStart="@+id/tvMetadata"
-        android:layout_above="@+id/tvMetadata"
-        android:layout_alignEnd="@+id/tvMetadata" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="260dp"
+        android:layout_marginBottom="185dp"/>
 
     <SeekBar
         android:layout_width="500dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
         android:id="@+id/seekBar"
         android:max="1000"
-        android:layout_below="@+id/btnPause"
+        android:layout_marginBottom="85dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/playimg"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="350dp"
+        android:layout_marginBottom="110dp"
+        android:id="@+id/ivPlay" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pauseimg"
+        android:id="@+id/ivPause"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="350dp"
+        android:layout_marginBottom="110dp"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/nextimg"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="450dp"
+        android:layout_marginBottom="110dp"
+        android:id="@+id/ivNext" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/previousimg"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="250dp"
+        android:layout_marginBottom="110dp"
+        android:id="@+id/ivPrevious" />
 
 
 </RelativeLayout>

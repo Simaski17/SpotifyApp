@@ -6,12 +6,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -36,22 +33,21 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends Activity implements SpotifyPlayer.NotificationCallback, ConnectionStateCallback {
-    @BindView(R.id.btnPlay)
-    Button btnPlay;
-    @BindView(R.id.btnPause)
-    Button btnPause;
-    @BindView(R.id.btnNext)
-    Button btnNext;
-    @BindView(R.id.btnPrevious)
-    Button btnPrevious;
-    @BindView(R.id.btnResume)
-    Button btnResume;
-    @BindView(R.id.tvMetadata)
-    TextView tvMetadata;
+
+    @BindView(R.id.tvEscuchas)
+    TextView tvEscuchas;
     @BindView(R.id.ivAlbumCover)
     ImageView ivAlbumCover;
     @BindView(R.id.seekBar)
     SeekBar seekBar;
+    @BindView(R.id.ivPlay)
+    ImageView ivPlay;
+    @BindView(R.id.ivPause)
+    ImageView ivPause;
+    @BindView(R.id.ivNext)
+    ImageView ivNext;
+    @BindView(R.id.ivPrevious)
+    ImageView ivPrevious;
     private BluetoothAdapter bAdapter;
 
     private static final String CLIENT_ID = "a87d072fa5a04db299815d5bf258071a";
@@ -189,14 +185,14 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
     private void updateView() {
         //final String durationStr = String.format(" (%dms)", mMetadata.currentTrack.durationMs);
         if (mMetadata != null) {
-            findViewById(R.id.btnNext).setEnabled(mMetadata.nextTrack != null);
-            findViewById(R.id.btnPrevious).setEnabled(mMetadata.prevTrack != null);
-            findViewById(R.id.btnPause).setEnabled(mMetadata.currentTrack != null);
+            findViewById(R.id.ivNext).setEnabled(mMetadata.nextTrack != null);
+            findViewById(R.id.ivPrevious).setEnabled(mMetadata.prevTrack != null);
+            findViewById(R.id.ivPause).setEnabled(mMetadata.currentTrack != null);
         }
 
         tiempo = (int) mMetadata.currentTrack.durationMs;
 
-        tvMetadata.setText(mMetadata.currentTrack.name + " - " + mMetadata.currentTrack.artistName);
+        tvEscuchas.setText(mMetadata.currentTrack.name + " - " + mMetadata.currentTrack.artistName);
 
         Glide.with(getApplicationContext()).load(mMetadata.currentTrack.albumCoverWebUrl)
                 .thumbnail(0.5f)
@@ -290,8 +286,8 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
                 switch (estado) {
                     case BluetoothAdapter.STATE_DISCONNECTED: {
                         mPlayer.pause(mOperationCallback);
-                        btnPause.setVisibility(View.GONE);
-                        btnResume.setVisibility(View.VISIBLE);
+                        //btnPause.setVisibility(View.GONE);
+                        //btnResume.setVisibility(View.VISIBLE);
                         break;
                     }
                     case BluetoothAdapter.STATE_CONNECTED: {
@@ -316,19 +312,14 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
     }
 
 
-    @OnClick({R.id.btnPlay, R.id.btnPause, R.id.btnResume, R.id.btnNext, R.id.btnPrevious})
+    /*@OnClick({R.id.btnPlay, R.id.btnPause, R.id.btnResume, R.id.btnNext, R.id.btnPrevious})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnPlay:
-                mPlayer.playUri(mOperationCallback, TEST_PLAYLIST_URI, 0, 0);
-                Log.e("TIEMPO", "State : " + mCurrentPlaybackState);
-                Log.e("TIEMPO", " : " + mCurrentPlaybackState);
+
                 break;
             case R.id.btnPause:
-                Log.e("TAG", "Player state: " + mCurrentPlaybackState);
-                mPlayer.pause(mOperationCallback);
-                btnPause.setVisibility(View.GONE);
-                btnResume.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.btnResume:
                 mPlayer.resume(mOperationCallback);
@@ -342,6 +333,30 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
                 mPlayer.skipToPrevious(mOperationCallback);
                 break;
         }
-    }
+    }*/
 
+    @OnClick({R.id.ivPlay, R.id.ivPause, R.id.ivNext, R.id.ivPrevious})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ivPlay:
+                mPlayer.playUri(mOperationCallback, TEST_PLAYLIST_URI, 0, 0);
+                ivPlay.setVisibility(View.GONE);
+                ivPause.setVisibility(View.VISIBLE);
+                Log.e("TIEMPO", "State : " + mCurrentPlaybackState);
+                Log.e("TIEMPO", " : " + mCurrentPlaybackState);
+                break;
+            case R.id.ivPause:
+                Log.e("TAG", "Player state: " + mCurrentPlaybackState);
+                mPlayer.pause(mOperationCallback);
+                ivPause.setVisibility(View.GONE);
+                ivPlay.setVisibility(View.VISIBLE);
+                break;
+            case R.id.ivNext:
+                mPlayer.skipToNext(mOperationCallback);
+                break;
+            case R.id.ivPrevious:
+                mPlayer.skipToPrevious(mOperationCallback);
+                break;
+        }
+    }
 }
